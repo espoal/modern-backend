@@ -3,7 +3,7 @@ import { pnpPlugin } from '@yarnpkg/esbuild-plugin-pnp'
 import { watchPlugin } from './watch.mjs'
 
 const baseOptions = {
-	plugins: [pnpPlugin()],
+	plugins: [],
 	bundle: true,
 	splitting: false,
 	format: 'esm',
