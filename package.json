@@ -3,13 +3,14 @@
   "packageManager": "yarn@4.0.0-rc.36",
   "scripts": {
     "build": "node build.mjs",
-    "build:docker": "",
-    "watch": "node build.mjs --watch",
-    "serve": "node build.mjs --watch --serve",
+    "watch": "node build.mjs watch",
+    "serve": "node build.mjs serve",
     "start": "yarn dist/ start",
+    "build:docker": "",
     "format": "rome format service pkgs libs --write --use-server",
     "lint": "rome check service pkgs libs --use-server",
-    "lint:fix": "rome check service pkgs libs --apply-suggested --use-server",
+    "lint:apply": "rome check service pkgs libs --apply-suggested --use-server",
+    "lint:fix": "yarn lint:apply && yarn format",
     "test": "tsc --noEmit && node --loader tsx --test"
   },
   "workspaces": [

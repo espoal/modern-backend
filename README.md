@@ -23,6 +23,6 @@ A modern backend for a modern engineer.
 - tests
 - watch
 - serve
-- unified linter
+- unified linter x
 - deployment
 - docker

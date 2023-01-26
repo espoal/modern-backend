@@ -1,18 +1,28 @@
 import { timeNow } from './time.mjs'
+import process from "node:process"
 
-export const watchHelper = (name) => ({
-	onRebuild(error, result) {
-		if (error) console.error('watch build failed:', error)
-		else {
-			console.log(`Build successful at time: ${timeNow()} for: ${name}`)
-			const { errors, warnings } = result
-			console.log({ errors, warnings })
-		}
+
+export const servePlugin = (spawner) => ({
+	name: 'watchHelper',
+	setup(build) {
+		let spawnedProcess = false
+		process.on('SIGINT', () => {
+			console.log('cleaning up process...')
+			if (spawnedProcess) {
+				process.kill(-spawnedProcess.pid)
+			}
+		})
+		build.onEnd(async (result) => {
+			if (spawnedProcess) {
+				await process.kill(-spawnedProcess.pid)
+			}
+			spawnedProcess = await spawner()
+		})
 	},
 })
 
 export const watchPlugin = (name) => ({
-	name: 'watchHelper',
+	name: 'serveHelper',
 	setup(build) {
 		build.onEnd((result) => {
 			console.log(`Build successful at: ${timeNow()} for: ${name}`)
@@ -21,5 +31,5 @@ export const watchPlugin = (name) => ({
 				console.error({ error })
 			}
 		})
-	},
+	}
 })
