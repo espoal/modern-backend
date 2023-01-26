@@ -1,0 +1,26 @@
+{
+  "name": "modern-backend",
+  "packageManager": "yarn@4.0.0-rc.36",
+  "scripts": {
+    "build": "node build.mjs",
+    "watch": "node build.mjs --watch",
+    "serve": "node build.mjs --watch --serve",
+    "start": "yarn dist/ start",
+    "lint": "rome check main pkgs libs --apply-suggested --use-server",
+    "lint:fix": "rome format main pkgs libs --write --use-server",
+    "test": "node --test"
+  },
+  "workspaces": [
+    "dist",
+    "infra",
+    "libs/*",
+    "main",
+    "pkgs/*"
+  ],
+  "devDependencies": {
+    "@libs/build": "workspace:^",
+    "@types/node": "^18.11.18",
+    "rome": "^11.0.0",
+    "typescript": "^4.9.4"
+  }
+}

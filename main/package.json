@@ -1,0 +1,8 @@
+{
+  "name": "main",
+  "main": "main.ts",
+  "packageManager": "yarn@4.0.0-rc.36",
+  "dependencies": {
+    "@pkgs/health": "workspace:^"
+  }
+}
