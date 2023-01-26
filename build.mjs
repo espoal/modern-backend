@@ -7,7 +7,7 @@ const external = [
 
 await buildHelper({
     name: 'main',
-    entryPoints: ['main/main.ts'],
+    entryPoints: ['service/server.ts'],
     external,
     ssr: true,
     isProd: argv.includes('prod'),

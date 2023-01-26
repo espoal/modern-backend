@@ -13,7 +13,16 @@ A modern backend for a modern engineer.
 
 - Yarn v4
 - Esbuild
-- - @yarnpkg/esbuild-plugin-pnp
 - Typescript
 - - @types/node
 - Rome
+
+# Todos
+
+- router
+- tests
+- watch
+- serve
+- unified linter
+- deployment
+- docker
