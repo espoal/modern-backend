@@ -1,0 +1,21 @@
+import { Route } from './types'
+
+export type Router = {
+	routes: Route[]
+	find: (path: string) => Route
+}
+
+export const routerFactory = (
+	routes: Route[],
+	notFound: Route
+): Router => {
+	console.log({ notFound })
+	const find = (path: string): Route => {
+		return routes.find((route) => route.path === path) ?? notFound
+	}
+
+	return {
+		routes,
+		find,
+	}
+}
