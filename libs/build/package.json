@@ -3,7 +3,6 @@
   "main": "index.mjs",
   "packageManager": "yarn@4.0.0-rc.36",
   "dependencies": {
-    "@yarnpkg/esbuild-plugin-pnp": "^3.0.0-rc.15",
     "esbuild": "^0.17.4"
   }
 }

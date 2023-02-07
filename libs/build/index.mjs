@@ -1,9 +1,9 @@
 import esbuild from 'esbuild'
 // import { pnpPlugin } from '@yarnpkg/esbuild-plugin-pnp'
-import { watchPlugin, servePlugin } from './watch.mjs'
+import { servePlugin } from './serve.mjs'
+import { buildLoggerPlugin } from './log.mjs'
 import { argv } from 'node:process'
 import { spawn } from 'node:child_process'
-
 
 const baseOptions = {
 	plugins: [],
@@ -16,28 +16,6 @@ const baseOptions = {
 	treeShaking: true,
 	outExtension: { '.js': '.mjs' },
 	tsconfig: 'tsconfig.json',
-}
-
-const spawner = async () => {
-
-	console.log('spawning process...')
-
-	const spawnedProcess = await spawn('yarn', ['start'], { detached: true })
-
-
-	spawnedProcess.stdout.on('data', (data) => {
-		console.log(`stdout: ${data}`);
-	});
-
-	spawnedProcess.stderr.on('data', (data) => {
-		console.error(`stderr: ${data}`);
-	});
-
-	spawnedProcess.on('close', (code) => {
-		console.log(`child process exited with code ${code}`);
-	});
-
-	return spawnedProcess
 }
 
 export const buildHelper = async ({
@@ -53,27 +31,24 @@ export const buildHelper = async ({
 		outdir: `dist/${outDir}`,
 	}
 
-	const isProd = process.env.NODE_ENV === 'production'
-	const shouldWatch = argv.includes('watch')
+	const isProd = process.env.NODE_ENV === 'production' || argv.includes('prod')
 	const shouldServe = argv.includes('serve')
+	const shouldWatch = argv.includes('watch') || shouldServe
 
-	console.log(
-		`Starting ${isProd ? 'production' : 'dev'} build for: ${name}`,
-	)
+	const envType = isProd ? 'prod' : 'dev'
+	const buildType = shouldWatch || shouldServe ? 'watch' : 'build'
 
+	console.log(`Starting ${buildType} in ${envType} for: ${name}`)
 
-	options.plugins.push(watchPlugin(name))
+	options.plugins.push(buildLoggerPlugin(name))
+	options.minify ||= isProd
 
-	if (isProd) {
-		options.minify = true
+	if (shouldServe) {
+		await esbuild.build(options)
+		options.plugins.push(servePlugin())
 	}
 
 	if (shouldWatch) {
-		const ctx = await esbuild.context(options)
-		await ctx.watch()
-	} else if (shouldServe) {
-		await esbuild.build(options)
-		options.plugins.push(servePlugin(spawner))
 		const ctx = await esbuild.context(options)
 		await ctx.watch()
 	} else {

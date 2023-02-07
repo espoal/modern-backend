@@ -1,2 +1,8 @@
+import { Route } from '@modern/service/types'
 
-export { handler } from './handler'
+import { handler } from './handler'
+
+export const healthRoute: Route = {
+	path: '/health',
+	handler,
+}

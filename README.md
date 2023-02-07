@@ -10,9 +10,9 @@ A modern backend for a modern engineer.
 
 # Deps
 
-
 - Yarn v4
 - Esbuild
+- - tsx
 - Typescript
 - - @types/node
 - Rome
@@ -21,8 +21,5 @@ A modern backend for a modern engineer.
 
 - router
 - tests
-- watch
-- serve
-- unified linter x
 - deployment
 - docker
