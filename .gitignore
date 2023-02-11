@@ -1,5 +1,5 @@
 # Dist
-dist/
+dist/*
 !dist/yarn.lock
 !dist/package.json
 !dist/.yarnrc.yml
