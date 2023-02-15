@@ -26,6 +26,14 @@ const RAW_RUNTIME_STATE =
       "reference": "workspace:libs/build"\
     },\
     {\
+      "name": "@libs/router",\
+      "reference": "workspace:libs/router"\
+    },\
+    {\
+      "name": "@libs/server",\
+      "reference": "workspace:libs/server"\
+    },\
+    {\
       "name": "@pkgs/health",\
       "reference": "workspace:pkgs/health"\
     },\
@@ -38,6 +46,8 @@ const RAW_RUNTIME_STATE =
   "ignorePatternData": "(^(?:\\\\.yarn\\\\/sdks(?:\\\\/(?!\\\\.{1,2}(?:\\\\/|$))(?:(?:(?!(?:^|\\\\/)\\\\.{1,2}(?:\\\\/|$)).)*?)|$))$)|(^(?:^(?:dist)$)$)",\
   "fallbackExclusionList": [\
     ["@libs/build", ["workspace:libs/build"]],\
+    ["@libs/router", ["workspace:libs/router"]],\
+    ["@libs/server", ["workspace:libs/server"]],\
     ["@modern/service", ["workspace:service"]],\
     ["@pkgs/health", ["workspace:pkgs/health"]],\
     ["dist", ["workspace:dist"]],\
@@ -319,8 +329,25 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./libs/build/",\
         "packageDependencies": [\
           ["@libs/build", "workspace:libs/build"],\
-          ["@yarnpkg/esbuild-plugin-pnp", "virtual:2d7a1f1a7395495670a999f04b6400271a7202935919564446d3648b7173ab8a73c72f29d583be6cc383f046913c3a782e0fa9c56d0824c1aa5ae0b392004b96#npm:3.0.0-rc.15"],\
           ["esbuild", "npm:0.17.4"]\
+        ],\
+        "linkType": "SOFT"\
+      }]\
+    ]],\
+    ["@libs/router", [\
+      ["workspace:libs/router", {\
+        "packageLocation": "./libs/router/",\
+        "packageDependencies": [\
+          ["@libs/router", "workspace:libs/router"]\
+        ],\
+        "linkType": "SOFT"\
+      }]\
+    ]],\
+    ["@libs/server", [\
+      ["workspace:libs/server", {\
+        "packageLocation": "./libs/server/",\
+        "packageDependencies": [\
+          ["@libs/server", "workspace:libs/server"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -330,6 +357,8 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./service/",\
         "packageDependencies": [\
           ["@modern/service", "workspace:service"],\
+          ["@libs/router", "workspace:libs/router"],\
+          ["@libs/server", "workspace:libs/server"],\
           ["@pkgs/health", "workspace:pkgs/health"]\
         ],\
         "linkType": "SOFT"\
@@ -435,29 +464,6 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../.yarn/berry/cache/@types-node-npm-18.11.18-d61e8a4a20-9.zip/node_modules/@types/node/",\
         "packageDependencies": [\
           ["@types/node", "npm:18.11.18"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["@yarnpkg/esbuild-plugin-pnp", [\
-      ["npm:3.0.0-rc.15", {\
-        "packageLocation": "../../../.yarn/berry/cache/@yarnpkg-esbuild-plugin-pnp-npm-3.0.0-rc.15-b916c218b3-9.zip/node_modules/@yarnpkg/esbuild-plugin-pnp/",\
-        "packageDependencies": [\
-          ["@yarnpkg/esbuild-plugin-pnp", "npm:3.0.0-rc.15"]\
-        ],\
-        "linkType": "SOFT"\
-      }],\
-      ["virtual:2d7a1f1a7395495670a999f04b6400271a7202935919564446d3648b7173ab8a73c72f29d583be6cc383f046913c3a782e0fa9c56d0824c1aa5ae0b392004b96#npm:3.0.0-rc.15", {\
-        "packageLocation": "./.yarn/__virtual__/@yarnpkg-esbuild-plugin-pnp-virtual-fc1dff8b17/4/.yarn/berry/cache/@yarnpkg-esbuild-plugin-pnp-npm-3.0.0-rc.15-b916c218b3-9.zip/node_modules/@yarnpkg/esbuild-plugin-pnp/",\
-        "packageDependencies": [\
-          ["@yarnpkg/esbuild-plugin-pnp", "virtual:2d7a1f1a7395495670a999f04b6400271a7202935919564446d3648b7173ab8a73c72f29d583be6cc383f046913c3a782e0fa9c56d0824c1aa5ae0b392004b96#npm:3.0.0-rc.15"],\
-          ["@types/esbuild", null],\
-          ["esbuild", "npm:0.17.4"],\
-          ["tslib", "npm:2.4.1"]\
-        ],\
-        "packagePeers": [\
-          "@types/esbuild",\
-          "esbuild"\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1704,15 +1710,6 @@ const RAW_RUNTIME_STATE =
           ["minizlib", "npm:2.1.2"],\
           ["mkdirp", "npm:1.0.4"],\
           ["yallist", "npm:4.0.0"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["tslib", [\
-      ["npm:2.4.1", {\
-        "packageLocation": "../../../.yarn/berry/cache/tslib-npm-2.4.1-36f0ed04db-9.zip/node_modules/tslib/",\
-        "packageDependencies": [\
-          ["tslib", "npm:2.4.1"]\
         ],\
         "linkType": "HARD"\
       }]\

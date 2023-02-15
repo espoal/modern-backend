@@ -1,6 +1,5 @@
 import { healthRoute } from '@pkgs/health'
-import { routerFactory } from './router'
-import { notFoundRoute } from './notFound'
+import { routerFactory, notFoundRoute } from '@libs/router'
 
 const routes = [healthRoute]
 

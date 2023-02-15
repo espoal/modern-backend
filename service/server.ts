@@ -1,20 +1,7 @@
-import http2 from 'node:http2'
-import fs from 'node:fs'
-import { mainHandler, errorHandler } from './handlers'
+import { serverFactory } from '@libs/server'
 
-const isProd = process.env.NODE_ENV === 'production'
-const port = process.env.PORT || 8443
+import { router } from './routes'
 
-const server = isProd
-	? http2.createServer()
-	: http2.createSecureServer({
-			key: fs.readFileSync('keys/localhost-privkey.pem'),
-			cert: fs.readFileSync('keys/localhost-cert.pem'),
-	  })
+const server = serverFactory(router)
 
-server.on('stream', mainHandler)
-server.on('error', errorHandler)
-
-console.log(`Listening on port: ${port}`)
-
-server.listen(port)
+server.listen(3000)

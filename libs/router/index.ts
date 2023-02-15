@@ -10,3 +10,6 @@ export type Route = {
 	handler: Handler
 	permissions?: string[]
 }
+
+export { routerFactory } from './router'
+export { notFoundRoute, notFoundHandler } from './notFound'

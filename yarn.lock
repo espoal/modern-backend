@@ -214,8 +214,19 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@libs/build@workspace:libs/build"
   dependencies:
-    "@yarnpkg/esbuild-plugin-pnp": "npm:^3.0.0-rc.15"
     esbuild: "npm:^0.17.4"
+  languageName: unknown
+  linkType: soft
+
+"@libs/router@workspace:^, @libs/router@workspace:libs/router":
+  version: 0.0.0-use.local
+  resolution: "@libs/router@workspace:libs/router"
+  languageName: unknown
+  linkType: soft
+
+"@libs/server@workspace:^, @libs/server@workspace:libs/server":
+  version: 0.0.0-use.local
+  resolution: "@libs/server@workspace:libs/server"
   languageName: unknown
   linkType: soft
 
@@ -223,6 +234,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@modern/service@workspace:service"
   dependencies:
+    "@libs/router": "workspace:^"
+    "@libs/server": "workspace:^"
     "@pkgs/health": "workspace:^"
   languageName: unknown
   linkType: soft
@@ -308,17 +321,6 @@ __metadata:
   version: 18.11.18
   resolution: "@types/node@npm:18.11.18"
   checksum: bd39552701928d4a1613bc46adf8b65f8212064c2b5475a67161b6c4cef21ddb0a5c2ba062673213f8f5301ef6e171241a9e274a9b59c9fc1f5e2b69764740eb
-  languageName: node
-  linkType: hard
-
-"@yarnpkg/esbuild-plugin-pnp@npm:^3.0.0-rc.15":
-  version: 3.0.0-rc.15
-  resolution: "@yarnpkg/esbuild-plugin-pnp@npm:3.0.0-rc.15"
-  dependencies:
-    tslib: "npm:^2.4.0"
-  peerDependencies:
-    esbuild: ">=0.10.0"
-  checksum: 27a456a5cc38878109b702e08cd577a0e9b32607a57809d75b22286a0089b1b7e7bf7c75627b123a39e1837f8162a42ca4fc3ef2715f61c80b2d7a7621ae46b2
   languageName: node
   linkType: hard
 
@@ -1507,13 +1509,6 @@ __metadata:
     mkdirp: "npm:^1.0.3"
     yallist: "npm:^4.0.0"
   checksum: b1254685cb870858a072a6863d7f769c5c27f964166cacdf2fee4aac526dc8949fb9cd609a9e0a77e5cb8f993e2d38c966c52de0e71827e8f14a3d4cd43209db
-  languageName: node
-  linkType: hard
-
-"tslib@npm:^2.4.0":
-  version: 2.4.1
-  resolution: "tslib@npm:2.4.1"
-  checksum: a739a21e3ff059e62c7c3c0845333fbc9c081bcc91e015f2d246a31eeaf1fb0e29b10c0913c7d22f692b3203bb469fd60ca5288aa4f27d351a969df2d0714899
   languageName: node
   linkType: hard
 
